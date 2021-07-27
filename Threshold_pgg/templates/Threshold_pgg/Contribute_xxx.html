@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+        YOUR DECISION IS (Period {{ subsession.round_number }} / {{ Constants.num_rounds }})
+
+{% endblock %}
+
+{% block content %}
+<p> You are player: <b> {{player.id_in_group}} </b>  </p>
+    <p> Your available endowment: <b> {{ Constants.endowment }} </b>  </p>
+<p> The contribution that your group pledged to make <b>in this period</b>: {{ group.total_group_plcontribution }} </p>
+
+{% if 20 < remaining_to_treshold <= 25 %}
+    <p> You pledged to contribute: <b> {{ player.pledged_cont }} </b> </p>
+    <p>  {{player.a}} should contribute 5, and other players should both contribute 10. </p>
+
+{% elif 15 < remaining_to_treshold <= 20 %}
+    <p> You pledged to contribute: <b> {{ player.pledged_cont }} </b> </p>
+    <p> {{player.a}} should contribute 10, and other players should both contribute 5 </p>
+
+
+{% elif 10 < remaining_to_treshold <= 15 %}
+    <p> You pledged to contribute: <b> {{ player.pledged_cont }} </b> </p>
+    <p> {{player.a}} should contribute 10, and other players should both contribute 5. </p>
+
+{% endif %}
+
+{% endif %}
+
+    {% formfields %}
+
+    {% next_button %}
+
+{% endblock %}

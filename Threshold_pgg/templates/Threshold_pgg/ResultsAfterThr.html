@@ -1,0 +1,28 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Results After Reaching the Threshold (Period {{ subsession.round_number }} / {{ Constants.num_rounds }})
+{% endblock %}
+
+{% block content %}
+
+ {% if group.threshold_reached_previous is False  %}
+<b> Congratulations! Your group has reached the threshold.
+    You do not have to contribute anymore.
+    Just enjoy the benefits from completed TPG!</b>
+    <p> You are player: <b> {{player.id_in_group}} </b>  </p>
+<p> The amount you earned <b>in this period:</b> {{player.payoff}} </p>
+<p> The total amount you earned <b>in all periods so far:</b> {{player.total_payoff}} </p>
+    <p> The threshold has been reached. You do not have to contribute any longer. </p>
+
+{%else%}
+    <p> You are player: <b> {{player.id_in_group}} </b>  </p>
+<p> The amount you earned <b>in this period:</b> {{player.payoff}} </p>
+<p> The total amount you earned <b>in all periods so far:</b> {{player.total_payoff}} </p>
+    <p> The threshold has been reached. You do not have to contribute any longer. </p>
+{%endif%}
+
+    {% next_button %}
+
+{% endblock %}

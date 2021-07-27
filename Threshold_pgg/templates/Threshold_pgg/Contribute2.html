@@ -1,0 +1,123 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+        Contributions suggested by the "Randomization Device" (Period {{ subsession.round_number }} / {{ Constants.num_rounds }})
+{% endblock %}
+
+{% block content %}
+
+    <p> You are player: <b> {{player.id_in_group}} </b>  </p>
+
+    {% if group.remains == 45 %}
+        {% if group.a == player.id_in_group%}
+            <p> You, Player {{group.b}}, Player {{group.d}}, Player {{group.c}}  are expected to contribute 10, while Player {{group.e}} is expected to contribute 5. </p>
+        {% elif group.b == player.id_in_group %}
+            <p> You, Player {{group.a}}, Player {{group.d}}, Player {{group.c}}  are expected to contribute 10, while Player {{group.e}} is expected to contribute 5. </p>
+        {% elif group.c == player.id_in_group %}
+            <p> You, Player {{group.a}}, Player {{group.d}}, Player {{group.b}}  are expected to contribute 10, while Player {{group.e}} is expected to contribute 5. </p>
+        {% elif group.d == player.id_in_group %}
+            <p> You, Player {{group.a}}, Player {{group.c}}, Player {{group.b}}  are expected to contribute 10, while Player {{group.e}} is expected to contribute 5. </p>
+        {% elif group.e == player.id_in_group %}
+            <p> You are expected to contribute 5, while Player {{group.a}}, Player {{group.d}}, Player {{group.b}}, Player {{group.c}} are expected to contribute 10. </p>
+        {% endif %}
+
+    {% elif group.remains == 40 %}
+        {% if group.a == player.id_in_group%}
+            <p> You, Player {{group.b}}, Player {{group.c}} are expected to contribute 10, while Player {{group.d}} and Player {{group.e}} are expected to contribute 5. </p>
+        {% elif group.b == player.id_in_group %}
+            <p> You, Player {{group.a}}, Player {{group.c}} are expected to contribute 10, while Player {{group.d}} and Player {{group.e}} are expected to contribute 5. </p>
+        {% elif group.c == player.id_in_group %}
+            <p> You, Player {{group.b}}, Player {{group.a}} are expected to contribute 10, while Player {{group.d}} and Player {{group.e}} are expected to contribute 5. </p>
+        {% elif group.d == player.id_in_group %}
+            <p> You and Player {{group.e}} is expected to contribute 5 while Player {{group.a}}, Player {{group.b}}, Player {{group.c}} are expected to contribute 10. </p>
+        {% elif group.e == player.id_in_group %}
+            <p> You and Player {{group.d}} is expected to contribute 5 while Player {{group.a}}, Player {{group.b}}, Player {{group.c}} are expected to contribute 10. </p>
+        {% endif %}
+
+    {% elif group.remains == 35 %}
+        {% if group.a == player.id_in_group%}
+            <p> You and Player {{group.b}} are expected to contribute 10, while Player {{group.c}}, Player {{group.d}} and Player {{group.e}} are expected to contribute 5. </p>
+        {% elif group.b == player.id_in_group %}
+            <p> You and Player {{group.a}} are expected to contribute 10, while Player {{group.c}}, Player {{group.d}} and Player {{group.e}} are expected to contribute 5. </p>
+        {% elif group.c == player.id_in_group %}
+            <p> You, Player {{group.d}} and Player {{group.e}} are expected to contribute 5 while Player {{group.a}} and Player {{group.b}} are expected to contribute 10. </p>
+        {% elif group.d == player.id_in_group %}
+            <p> You, Player {{group.c}} and Player {{group.e}} are expected to contribute 5 while Player {{group.a}} and Player {{group.b}} are expected to contribute 10. </p>
+        {% elif group.e == player.id_in_group %}
+            <p> You, Player {{group.c}} and Player {{group.d}} are expected to contribute 5 while Player {{group.a}} and Player {{group.b}} are expected to contribute 10. </p>
+        {% endif %}
+
+    {% elif group.remains == 30 %}
+        {% if group.a == player.id_in_group%}
+            <p> You are expected to contribute 10, while Player {{group.b}}, Player {{group.c}}, Player {{group.d}}, Player {{group.e}} are expected to contribute 5. </p>
+        {% elif group.b == player.id_in_group %}
+            <p> You, Player {{group.c}}, Player {{group.d}}, Player {{group.e}} are expected to contribute 5, while Player {{group.a}} is expected to contribute 10. </p>
+        {% elif group.c == player.id_in_group %}
+            <p> You, Player {{group.b}}, Player {{group.d}}, Player {{group.e}} are expected to contribute 5, while Player {{group.a}} is expected to contribute 10. </p>
+        {% elif group.d == player.id_in_group %}
+            <p> You, Player {{group.b}}, Player {{group.c}}, Player {{group.e}} are expected to contribute 5, while Player {{group.a}} is expected to contribute 10. </p>
+        {% elif group.e == player.id_in_group %}
+            <p> You, Player {{group.b}}, Player {{group.c}}, Player {{group.d}} are expected to contribute 5, while Player {{group.a}} is expected to contribute 10. </p>
+        {% endif %}
+
+    {% elif group.remains == 25 %}
+            <p> All players are expected to contribute 5. </p>
+
+    {% elif group.remains == 20 %}
+        {% if group.a == player.id_in_group%}
+            <p> You are expected to contribute 0, while Player {{group.b}}, Player {{group.c}}, Player {{group.d}}, Player {{group.e}} are expected to contribute 5. </p>
+        {% elif group.b == player.id_in_group %}
+            <p> You, Player {{group.c}}, Player {{group.d}}, Player {{group.e}} are expected to contribute 5, while Player {{group.a}} is expected to contribute 0. </p>
+        {% elif group.c == player.id_in_group %}
+            <p> You, Player {{group.b}}, Player {{group.d}}, Player {{group.e}} are expected to contribute 5, while Player {{group.a}} is expected to contribute 0. </p>
+        {% elif group.d == player.id_in_group %}
+            <p> You, Player {{group.b}}, Player {{group.c}}, Player {{group.e}} are expected to contribute 5, while Player {{group.a}} is expected to contribute 0. </p>
+        {% elif group.e == player.id_in_group %}
+            <p> You, Player {{group.b}}, Player {{group.c}}, Player {{group.d}} are expected to contribute 5, while Player {{group.a}} is expected to contribute 0. </p>
+        {% endif %}
+
+    {% elif group.remains == 15 %}
+        {% if group.a == player.id_in_group%}
+            <p> You, Player {{group.b}}, Player {{group.c}} are expected to contribute 5, while Player {{group.d}} and Player {{group.e}} are expected to contribute 0. </p>
+        {% elif group.b == player.id_in_group %}
+            <p> You, Player {{group.a}}, Player {{group.c}} are expected to contribute 5, while Player {{group.d}} and Player {{group.e}} are expected to contribute 0. </p>
+        {% elif group.c == player.id_in_group %}
+            <p> You, Player {{group.a}}, Player {{group.b}} are expected to contribute 5, while Player {{group.d}} and Player {{group.e}} are expected to contribute 0. </p>
+        {% elif group.d == player.id_in_group %}
+            <p> You and Player {{group.e}} is expected to contribute 0 while Player {{group.a}}, Player {{group.b}}, Player {{group.c}} are expected to contribute 5. </p>
+        {% elif group.e == player.id_in_group %}
+            <p> You and Player {{group.d}} is expected to contribute 0 while Player {{group.a}}, Player {{group.b}}, Player {{group.c}} are expected to contribute 5. </p>
+        {% endif %}
+
+    {% elif group.remains == 10 %}
+        {% if group.a == player.id_in_group%}
+            <p> You, Player {{group.b}} are expected to contribute 5, while Player {{group.c}}, Player {{group.d}} and Player {{group.e}} are expected to contribute 0. </p>
+        {% elif group.b == player.id_in_group %}
+            <p> You, Player {{group.a}} are expected to contribute 5, while Player {{group.c}}, Player {{group.d}} and Player {{group.e}} are expected to contribute 0. </p>
+        {% elif group.c == player.id_in_group %}
+            <p> You, Player {{group.d}} and Player {{group.e}} are expected to contribute 0 while Player {{group.a}} and Player {{group.b}} are expected to contribute 5. </p>
+        {% elif group.d == player.id_in_group %}
+            <p> You, Player {{group.c}} and Player {{group.e}} are expected to contribute 0 while Player {{group.a}} and Player {{group.b}} are expected to contribute 5. </p>
+        {% elif group.e == player.id_in_group %}
+            <p> You, Player {{group.c}} and Player {{group.d}} are expected to contribute 0 while Player {{group.a}} and Player {{group.b}} are expected to contribute 5. </p>
+        {% endif %}
+
+     {% elif group.remains == 5 %}
+        {% if group.a == player.id_in_group%}
+            <p> You, Player {{group.b}}, Player {{group.d}}, Player {{group.c}}  are expected to contribute 0, while Player {{group.e}} is expected to contribute 5. </p>
+        {% elif group.b == player.id_in_group %}
+            <p> You, Player {{group.a}}, Player {{group.d}}, Player {{group.c}}  are expected to contribute 0, while Player {{group.e}} is expected to contribute 5. </p>
+        {% elif group.c == player.id_in_group %}
+            <p> You, Player {{group.a}}, Player {{group.d}}, Player {{group.b}}  are expected to contribute 0, while Player {{group.e}} is expected to contribute 5. </p>
+        {% elif group.d == player.id_in_group %}
+            <p> You, Player {{group.a}}, Player {{group.c}}, Player {{group.b}}  are expected to contribute 0, while Player {{group.e}} is expected to contribute 5. </p>
+        {% elif group.e == player.id_in_group %}
+            <p> You are expected to contribute 5, while Player {{group.a}}, Player {{group.d}}, Player {{group.b}}, Player {{group.c}} are expected to contribute 10. </p>
+        {% endif %}
+
+    {% endif %}
+
+{% next_button %}
+
+{% endblock %}

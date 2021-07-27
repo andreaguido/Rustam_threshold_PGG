@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    (Period {{ subsession.round_number }} / {{ Constants.num_rounds }})
+
+{% endblock %}
+
+{% block content %}
+
+<b> Congratulations! Your group has reached the threshold.
+    You do not have to contribute anymore.
+    Just enjoy the benefits from completed TPG!</b>
+
+    {% next_button %}
+
+{% endblock %}

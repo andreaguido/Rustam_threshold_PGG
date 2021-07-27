@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Contributions Pledged to be made by your Group (Period {{ subsession.round_number }} / {{ Constants.num_rounds }})
+{% endblock %}
+
+{% block content %}
+
+
+    <p>  Your initial money at the beginning of the period: <b> {{ Constants.endowment }} </b>  </p>
+    <p>     You claimed to contribute: {{ player.pledged_cont }} </p>
+    <p> Player 1 pledged to contribute: {{p1plcontribution}}
+    <p> Player 2 pledged to contribute: {{p2plcontribution}}
+    <p> Player 3 pledged to contribute: {{p3plcontribution}}
+    <p> Player 4 pledged to contribute: {{p4plcontribution}}
+    <p> Player 5 pledged to contribute: {{p5plcontribution}}
+
+<p>  The contribution that your group claims to make <b>in this period</b>:{{ group.total_group_plcontribution }} </p>
+
+
+
+    {% next_button %}
+
+{% endblock %}

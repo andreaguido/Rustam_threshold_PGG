@@ -1,0 +1,176 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+{% load staticfiles otree_tags %}
+
+    {% block title %}
+        Pledges vs Actual Contributions (Period {{ subsession.round_number }} / {{ Constants.num_rounds }})
+    {% endblock %}
+
+    {% block content %}
+
+		<div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+				<div class="panel-heading text-center"><b>Private Account</b></div>
+                    <div class="panel-body">
+                        <!--Table of results-->
+                        <ul class="list-group">
+                            <li class="list-group-item">You allocated {{ private_contribution }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+				<div class="panel-heading text-center"><b>Common Account</b></div>
+                    <div class="panel-body">
+                        <!--Table of results-->
+                        <ul class="list-group">
+                            <li class="list-group-item">You allocated {{ player.contribution }} points</li>
+                            <li class="list-group-item">Your group allocated {{ group_contribution }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 text-center mt-3">
+				<div class="panel-heading text-center"><b>Total round earnings <br>(from your private and your public account)</b></div>
+                    <div class="panel-body">
+                        <!--Table of results-->
+                        <ul class="list-group">
+                            <li class="list-group-item">You earned {{ private_contribution }} + {{ player.payoff }} = {{ player_round_payoff }}</li>
+                        </ul>
+                    </div>
+
+                <div class="panel-body mt-5">
+                    <ul class="list-group">
+                        <li class="list-group-item">{% if group.threshold_reached == 0 %}
+                             <p> Remaining amount to reach the threshold: <b> {{ remaining_to_treshold }} </b> </p>
+                        {% else %}
+                            <p> Congratulations! The threshold has been reached. You do not have to contribute any longer. </p>
+                        {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+				<div class="panel-body col-sm-12 mt-3">
+                    {% if perc_contribution == 0 %}
+                            <img src="{% static 'global/bridge_images/0.png' %}" class="img-fluid">
+                    {% elif perc_contribution > 0 and perc_contribution < .10 %}
+                            <img src="{% static 'global/bridge_images/1.png' %}" class="img-fluid">
+                    {% elif perc_contribution >= .10 and perc_contribution < .20 %}
+                            <img src="{% static 'global/bridge_images/2.png' %}" class="img-fluid">
+                    {% elif perc_contribution >= .20 and perc_contribution < .30 %}
+                            <img src="{% static 'global/bridge_images/3.png' %}" class="img-fluid">
+                    {% elif perc_contribution >= .30 and perc_contribution < .40 %}
+                            <img src="{% static 'global/bridge_images/4.png' %}" class="img-fluid">
+                    {% elif perc_contribution >= .40 and perc_contribution < .50 %}
+                            <img src="{% static 'global/bridge_images/5.png' %}" class="img-fluid">
+                    {% elif perc_contribution >= .50 and perc_contribution < .60 %}
+                            <img src="{% static 'global/bridge_images/6.png' %}" class="img-fluid">
+                    {% elif perc_contribution >= .60 and perc_contribution < .70 %}
+                            <img src="{% static 'global/bridge_images/7.png' %}" class="img-fluid">
+                    {% elif perc_contribution >= .70 and perc_contribution < .80 %}
+                            <img src="{% static 'global/bridge_images/8.png' %}" class="img-fluid">
+                    {% elif perc_contribution >= .80 and perc_contribution < .90 %}
+                            <img src="{% static 'global/bridge_images/9.png' %}" class="img-fluid">
+                    {% elif perc_contribution >= .90 and perc_contribution < 1 %}
+                            <img src="{% static 'global/bridge_images/10.png' %}" class="img-fluid">
+                    {% elif perc_contribution == 1 %}
+                            <img src="{% static 'global/bridge_images/11.png' %}" class="img-fluid">
+                    {% endif %}
+				</div>
+			</div>
+            <div class="row">
+                <div class="col-sm-12 mt-3">
+				<div class="panel-heading text-center"><b>Subject Contributions</b></div>
+                    <div class="table-responsive">
+                            <!--Table of results-->
+                            <table class="table">
+                                <tr>
+                                    <th>Player</th>
+                                    <th> Pledged to contribute</th>
+                                    <th> Actual contribution </th>
+                                </tr>
+                                <tr>
+                                    <td><b>Player {{player.id_in_group}} </b>(You)</td>
+                                    <td> {{ player.pledged_cont }} </td>
+                                    <td> {{ player.contribution }} </td>
+                                </tr>
+                                <tr>
+                                    <td><b> Player {{ other_id0 }}</b></td>
+                                    <td> {{ other_plcontribution0 }} </td>
+                                    <td> {{ other_contribution0 }} </td>
+                                </tr>
+                                <tr>
+                                    <td><b> Player {{ other_id1 }}</b></td>
+                                    <td> {{ other_plcontribution1 }} </td>
+                                    <td> {{ other_contribution1 }} </td>
+                                </tr>
+                                <tr>
+                                    <td><b> Player {{ other_id2 }}</b></td>
+                                    <td> {{ other_plcontribution2 }} </td>
+                                    <td> {{ other_contribution2 }} </td>
+                                </tr>
+                                <tr>
+                                    <td><b> Player {{ other_id3 }}</b></td>
+                                    <td> {{ other_plcontribution3 }} </td>
+                                    <td> {{ other_contribution3 }} </td>
+                                </tr>
+
+                            </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+<!---
+<p> The contribution that your group pledged to make <b>in this period:</b> {{ group.total_group_plcontribution }} </p>
+<p> The contribution that your group actually made <b>in this period: </b> {{ group.total_group_contribution }} </p>
+<p> The amount you earned <b>in this period:</b> {{player.payoff}} </p>
+<p> The total amount you earned <b>in all periods so far:</b> {{player.total_payoff}} </p>
+
+<p> <u>Details by Player - this round</u> </p>
+
+{% if player.id_in_group == 1 %}
+    <p> Player 2 pledged to contribute: {{p2plcontribution}} & actually contributed: {{p2contribution}} </p>
+    <p> Player 3 pledged to contribute: {{p3plcontribution}} & actually contributed: {{p3contribution}} </p>
+    <p> Player 4 pledged to contribute: {{p4plcontribution}} & actually contributed: {{p4contribution}} </p>
+    <p> Player 5 pledged to contribute: {{p5plcontribution}} & actually contributed: {{p5contribution}} </p>
+
+{% elif player.id_in_group == 2 %}
+    <p> You pledged to contribute: {{ player.pledged_cont }} & actually contributed: {{ player.contribution }} </p>
+    <p> Player 1 pledged to contribute: {{p1plcontribution}} & actually contributed: {{p1contribution}} </p>
+    <p> Player 3 pledged to contribute: {{p3plcontribution}} & actually contributed: {{p3contribution}} </p>
+    <p> Player 4 pledged to contribute: {{p4plcontribution}} & actually contributed: {{p4contribution}} </p>
+    <p> Player 5 pledged to contribute: {{p5plcontribution}} & actually contributed: {{p5contribution}} </p>
+
+{% elif player.id_in_group == 3 %}
+    <p> You pledged to contribute: {{ player.pledged_cont }} & actually contributed: {{ player.contribution }} </p>
+    <p> Player 1 pledged to contribute: {{p1plcontribution}} & actually contributed: {{p1contribution}} </p>
+    <p> Player 2 pledged to contribute: {{p2plcontribution}} & actually contributed: {{p2contribution}} </p>
+    <p> Player 4 pledged to contribute: {{p4plcontribution}} & actually contributed: {{p4contribution}} </p>
+    <p> Player 5 pledged to contribute: {{p5plcontribution}} & actually contributed: {{p5contribution}} </p>
+
+{% elif player.id_in_group == 4 %}
+    <p> You pledged to contribute: {{ player.pledged_cont }} & actually contributed: {{ player.contribution }} </p>
+    <p> Player 1 pledged to contribute: {{p1plcontribution}} & actually contributed: {{p1contribution}} </p>
+    <p> Player 2 pledged to contribute: {{p2plcontribution}} & actually contributed: {{p2contribution}} </p>
+    <p> Player 3 pledged to contribute: {{p3plcontribution}} & actually contributed: {{p3contribution}} </p>
+    <p> Player 5 pledged to contribute: {{p5plcontribution}} & actually contributed: {{p5contribution}} </p>
+
+{% elif player.id_in_group == 5 %}
+    <p> You pledged to contribute: {{ player.pledged_cont }} & actually contributed: {{ player.contribution }} </p>
+    <p> Player 1 pledged to contribute: {{p1plcontribution}} & actually contributed: {{p1contribution}} </p>
+    <p> Player 2 pledged to contribute: {{p2plcontribution}} & actually contributed: {{p2contribution}} </p>
+    <p> Player 3 pledged to contribute: {{p3plcontribution}} & actually contributed: {{p3contribution}} </p>
+    <p> Player 4 pledged to contribute: {{p4plcontribution}} & actually contributed: {{p4contribution}} </p>
+
+{% endif %}
+
+
+<p> The contribution that your group <b> pledged to make in all periods so far:</b>  {{group.total_group_plcontribution_in_all_rounds }} & <b> actually made in all periods so far:</b> {{ group.total_group_contribution_in_all_rounds }} </p>
+--->
+<br>
+    {% next_button %}
+
+{% endblock %}

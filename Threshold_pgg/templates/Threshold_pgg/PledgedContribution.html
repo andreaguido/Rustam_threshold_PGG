@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+        Pledges (Period {{ subsession.round_number }} / {{ Constants.num_rounds }})
+
+{% endblock %}
+
+{% block content %}
+<p> You are player: <b> {{player.id_in_group}} </b>  </p>
+    <p> Your available endowment: <b> {{ Constants.endowment }} </b>  </p>
+<p> The contribution that your group pledged to make <b>in this period</b>: {{ group.total_group_plcontribution }} </p>
+
+
+    {% formfields %}
+
+    {% next_button %}
+
+{% endblock %}

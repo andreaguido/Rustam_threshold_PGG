@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    TPG game
+{% endblock %}
+
+{% block content %}
+
+<p> In this experiment, you will be in a group of {{ Constants.players_per_group }} participants.</p>
+<p> You and other {{ Constants.num_others_per_group }} participants will make simultaneous decisions for {{ Constants.num_rounds }} rounds. </p>
+
+
+    {% next_button %}
+
+{% endblock %}
